@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAPE Applied Mathematics Unit 2 – Paper 2 | End of Module Test</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --green:     #1a5c38;
+    --green-mid: #2a7a4e;
+    --green-lt:  #d8eedf;
+    --green-xlt: #f0f8f3;
+    --gold:      #c49a1a;
+    --gold-lt:   #fdf6dc;
+    --ink:       #1a1a1a;
+    --muted:     #555;
+    --rule:      #c5d9cc;
+    --white:     #ffffff;
+    --paper:     #fafdf8;
+    --radius:    6px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 0 0 60px;
+  }
+
+  /* HEADER */
+  .exam-header {
+    background: var(--green);
+    color: var(--white);
+    padding: 28px 40px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .exam-header::after {
+    content: '';
+    position: absolute;
+    right: -40px; bottom: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+  }
+  .exam-header .college {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .85;
+    margin-bottom: 6px;
+  }
+  .exam-header h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .exam-header .subtitle { font-size: 14px; opacity: .8; margin-top: 4px; }
+  .meta-bar {
+    display: flex; flex-wrap: wrap;
+    gap: 6px 18px;
+    margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,.25);
+    font-size: 12.5px;
+  }
+  .meta-bar span { opacity: .85; }
+  .meta-bar strong { font-weight: 700; }
+
+  /* INSTRUCTIONS */
+  .instructions {
+    background: var(--gold-lt);
+    border-left: 4px solid var(--gold);
+    margin: 24px 40px 0;
+    padding: 14px 18px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 13.5px;
+  }
+  .instructions strong { color: var(--green); }
+  .instructions ul { padding-left: 18px; margin-top: 6px; }
+  .instructions li { margin-bottom: 3px; }
+
+  /* CONTENT */
+  .content { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+
+  /* QUESTION BLOCK */
+  .question-block {
+    margin-top: 36px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  }
+  .question-header {
+    background: var(--green); color: white;
+    padding: 10px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .question-header .q-num {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px; font-weight: 600;
+  }
+  .question-header .q-total {
+    font-size: 12px; opacity: .8;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .question-body { padding: 20px 24px; }
+
+  .scenario {
+    background: var(--green-xlt);
+    border-left: 3px solid var(--green-mid);
+    padding: 12px 16px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: 18px;
+    font-size: 14.5px;
+  }
+
+  /* DIAGRAM */
+  .diagram-wrap {
+    display: flex; justify-content: center;
+    margin: 16px 0;
+  }
+  .diagram-wrap svg { max-width: 100%; }
+
+  /* PARTS */
+  .part {
+    margin-top: 18px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .part-header {
+    background: var(--green-lt);
+    padding: 11px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .part-label {
+    font-weight: 700; font-size: 14px;
+    color: var(--green); min-width: 28px;
+    padding-top: 1px;
+  }
+  .part-question { font-size: 14px; flex: 1; color: var(--ink); }
+  .part-marks {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: var(--green); color: white;
+    padding: 2px 10px; border-radius: 20px;
+    white-space: nowrap;
+    align-self: flex-start; margin-top: 2px;
+  }
+
+  /* FOOTER */
+  .exam-footer {
+    margin: 48px 40px 0; padding-top: 18px;
+    border-top: 2px solid var(--green);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--muted);
+    flex-wrap: wrap; gap: 8px;
+  }
+  .exam-footer .cfbc { font-weight: 700; color: var(--green); }
+
+  @media (max-width: 640px) {
+    .exam-header, .instructions, .exam-footer {
+      margin-left: 16px; margin-right: 16px;
+      padding-left: 16px; padding-right: 16px;
+    }
+    .content { padding: 0 16px; }
+    .exam-header h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═════════════════════════════════════════════════ -->
+<div class="exam-header">
+  <div class="college">Clarence Fitzroy Bryant College</div>
+  <h1>CAPE Applied Mathematics – Unit 2<br>Module 3: Particle Mechanics</h1>
+  <div class="subtitle">End of Module Test &nbsp;·&nbsp; Paper 2</div>
+  <div class="meta-bar">
+    <span><strong>Total Marks:</strong> 48</span>
+    <span><strong>Questions:</strong> 6</span>
+    <span><strong>Calculators Permitted</strong></span>
+  </div>
+</div>
+
+<!-- ═══ INSTRUCTIONS ═══════════════════════════════════════════ -->
+<div class="instructions">
+  <strong>Instructions to Candidates:</strong>
+  <ul>
+    <li>Answer <strong>ALL</strong> questions. Show <strong>all</strong> working clearly — unsupported answers may not receive full marks.</li>
+    <li>Unless otherwise stated, use \(g = 10 \text{ ms}^{-2}\). Give non-exact answers to 3 significant figures.</li>
+    <li>The marks allocated to each part are shown in square brackets at the end of the question.</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     QUESTIONS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="content">
+
+
+<!-- ══ Q1 ════════════════════════════════════════════════════════ -->
+<div class="question-block">
+  <div class="question-header">
+    <span class="q-num">Question 1 — Braking on an Incline</span>
+    <span class="q-total">12 marks</span>
+  </div>
+  <div class="question-body">
+
+    <div class="scenario">
+      The following diagram shows a 3500 kg automobile which travels <strong>down</strong> a 10° inclined
+      road at a speed of 20 ms⁻¹. If the driver jams on the brakes, causing his wheels to lock,
+      and the coefficient of friction between the wheels and the road is 0.5, determine:
+    </div>
+
+    <!-- Car on incline: angle + car only -->
+    <div class="diagram-wrap">
+      <!--
+        Road goes from bottom-left (15,148) to top-right (305,74).
+        slope angle = atan((148-74)/(305-15)) = atan(74/290) ≈ 14.3° — drawn steeper for clarity, labelled 10°.
+        Angle vertex is at bottom-right where slope meets the horizontal: (305,148).
+        Arc sweeps from the horizontal leftward to the slope line.
+          Horizontal direction from vertex = 180° (leftward).
+          Slope direction from vertex = 180° - 14.3° = 165.7° (up-left along slope).
+        Arc: start on horizontal 40px left of vertex → (265,148)
+             end on slope 40px up-left of vertex → (305 + 40·cos(165.7°), 148 + 40·sin(165.7°))
+                                                 = (305 - 38.7, 148 - 10.0) ≈ (266, 138)
+        sweep-flag=0 (counter-clockwise from horizontal to slope = small arc sweeping upward)
+      -->
+      <svg width="340" height="168" viewBox="0 0 340 168" xmlns="http://www.w3.org/2000/svg">
+        <!-- Road surface: from bottom-left (15,148) to top-right (320,74) -->
+        <line x1="15" y1="148" x2="320" y2="74" stroke="#1a5c38" stroke-width="2.5"/>
+        <!-- Horizontal dashed baseline -->
+        <line x1="15" y1="148" x2="320" y2="148" stroke="#aaa" stroke-width="1.2" stroke-dasharray="6,4"/>
+
+        <!--
+          Angle vertex = (15, 148) — bottom-left where slope leaves horizontal.
+          Slope direction (rightward+up): dx=305, dy=-74 → angle ≈ 13.6° above horizontal.
+          Drawn as 10° label.
+          Arc radius = 48px.
+          Start point: 48px along horizontal → (63, 148)
+          End point:   48px along slope      → (15 + 48·0.969, 148 + 48·(−0.235)) = (61.5, 136.7) ≈ (62, 137)
+          sweep=1 (clockwise) draws the small arc opening between horizontal and slope.
+        -->
+        <path d="M 63,148 A 48,48 0 0,0 62,137"
+              fill="none" stroke="#c49a1a" stroke-width="1.8"/>
+        <text x="68" y="148" font-size="12.5" fill="#c49a1a"
+              font-family="EB Garamond,serif">10°</text>
+
+        <!-- Car on slope, rotated −13.6° to sit on the line -->
+        <g transform="translate(55,90) rotate(-13.6)">
+          <rect x="0" y="10" width="92" height="24" rx="4" fill="#2a7a4e" stroke="#1a5c38" stroke-width="1.3"/>
+          <rect x="16" y="-2" width="54" height="18" rx="5" fill="#3a9a6a" stroke="#1a5c38" stroke-width="1.1"/>
+          <rect x="20" y="0"  width="18" height="12" rx="2" fill="#c8ecd8" opacity=".75"/>
+          <rect x="44" y="0"  width="18" height="12" rx="2" fill="#c8ecd8" opacity=".75"/>
+          <circle cx="16" cy="34" r="9"   fill="#222" stroke="#666" stroke-width="1.5"/>
+          <circle cx="16" cy="34" r="4.5" fill="#bbb"/>
+          <circle cx="72" cy="34" r="9"   fill="#222" stroke="#666" stroke-width="1.5"/>
+          <circle cx="72" cy="34" r="4.5" fill="#bbb"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(i)</span>
+        <span class="part-question">The deceleration of the automobile after the brakes are applied.</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(ii)</span>
+        <span class="part-question">The distance the tires would skid on the road.</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(iii)</span>
+        <span class="part-question">The loss in kinetic energy, if the car moves a distance of 5 m after the brakes are applied.</span>
+        <span class="part-marks">6 marks</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ Q2 ════════════════════════════════════════════════════════ -->
+<div class="question-block">
+  <div class="question-header">
+    <span class="q-num">Question 2 — Projectile Motion: Golf Ball</span>
+    <span class="q-total">12 marks</span>
+  </div>
+  <div class="question-body">
+
+    <div class="scenario">
+      At a point P, a golfer hits a golf ball of mass 46 g at an angle of 35° to the horizontal.
+      The golf ball travels in the air until it hits the ground at a point Q, which is 20 metres
+      away from P.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="400" height="158" viewBox="0 0 400 158" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="adist" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#555"/>
+          </marker>
+          <marker id="avec" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#c49a1a"/>
+          </marker>
+        </defs>
+        <!-- Ground -->
+        <line x1="28" y1="132" x2="382" y2="132" stroke="#1a5c38" stroke-width="2"/>
+        <!-- Hatching -->
+        <g stroke="#aaa" stroke-width="1">
+          <line x1="30"  y1="132" x2="22"  y2="141"/>
+          <line x1="54"  y1="132" x2="46"  y2="141"/>
+          <line x1="78"  y1="132" x2="70"  y2="141"/>
+          <line x1="334" y1="132" x2="326" y2="141"/>
+          <line x1="358" y1="132" x2="350" y2="141"/>
+          <line x1="382" y1="132" x2="374" y2="141"/>
+        </g>
+        <!-- Parabola -->
+        <path d="M 50,132 Q 205,18 360,132" fill="none" stroke="#1a5c38" stroke-width="2" stroke-dasharray="7,4"/>
+        <!-- P, Q -->
+        <circle cx="50"  cy="132" r="6" fill="#2a7a4e"/>
+        <text x="43"  y="148" font-size="13" fill="#1a5c38" font-family="EB Garamond,serif" font-weight="600">P</text>
+        <circle cx="360" cy="132" r="6" fill="#2a7a4e"/>
+        <text x="354" y="148" font-size="13" fill="#1a5c38" font-family="EB Garamond,serif" font-weight="600">Q</text>
+        <!-- Velocity vector -->
+        <line x1="50" y1="132" x2="94" y2="96" stroke="#c49a1a" stroke-width="2" marker-end="url(#avec)"/>
+        <text x="76" y="90" font-size="12" fill="#c49a1a" font-family="EB Garamond,serif" font-style="italic">u</text>
+        <!-- Angle arc -->
+        <path d="M 82,132 A 33,33 0 0,0 72,105" fill="none" stroke="#c49a1a" stroke-width="1.5"/>
+        <text x="84" y="126" font-size="11.5" fill="#c49a1a" font-family="EB Garamond,serif">35°</text>
+        <!-- 20m arrow -->
+        <line x1="50"  y1="145" x2="356" y2="145" stroke="#555" stroke-width="1.2" marker-end="url(#adist)"/>
+        <line x1="360" y1="145" x2="54"  y2="145" stroke="#555" stroke-width="1.2" marker-end="url(#adist)"/>
+        <text x="190" y="156" font-size="12" fill="#555" font-family="Source Sans 3">20 m</text>
+      </svg>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(i)</span>
+        <span class="part-question">Determine the speed of the golf ball at P. <span style="font-weight:400;color:#555;">[4 marks]</span></span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(ii)</span>
+        <span class="part-question">Draw a labelled diagram to determine the position of the ball after 1 second. You <strong>must</strong> show the ball's vertical distance above the ground and the ball's horizontal distance from point P on the diagram.</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(iii)</span>
+        <span class="part-question">Calculate the speed and direction of the ball just before it hits the ground at Q.</span>
+        <span class="part-marks">6 marks</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ Q3 ════════════════════════════════════════════════════════ -->
+<div class="question-block">
+  <div class="question-header">
+    <span class="q-num">Question 3 — Collision: Golf Ball and Rock</span>
+    <span class="q-total">6 marks</span>
+  </div>
+  <div class="question-body">
+
+    <div class="scenario">
+      A golf ball collides with a stationary rock at point Q. After the impact, the golf ball
+      rebounds with a speed of 3 ms⁻¹ and the rock moves forward with a speed of 4 ms⁻¹.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="380" height="92" viewBox="0 0 380 92" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="mfwd"  markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#1a5c38"/>
+          </marker>
+          <marker id="mback" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#c03030"/>
+          </marker>
+          <marker id="mrock" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#1a5caa"/>
+          </marker>
+        </defs>
+        <!-- BEFORE -->
+        <text x="76"  y="13" font-size="11" fill="#666" text-anchor="middle" font-family="Source Sans 3">BEFORE</text>
+        <circle cx="52"  cy="48" r="12" fill="#2a7a4e" stroke="#1a5c38" stroke-width="1.4"/>
+        <text x="52"  y="52" font-size="9" fill="white" text-anchor="middle" font-family="Source Sans 3">46g</text>
+        <line x1="66"  y1="48" x2="105" y2="48" stroke="#1a5c38" stroke-width="2" marker-end="url(#mfwd)"/>
+        <text x="78"  y="42" font-size="10" fill="#1a5c38" font-family="Source Sans 3">v₀</text>
+        <rect x="115" y="36" width="28" height="28" rx="3" fill="#888" stroke="#555" stroke-width="1.3"/>
+        <text x="129" y="55" font-size="9" fill="white" text-anchor="middle" font-family="Source Sans 3">rock</text>
+        <text x="129" y="70" font-size="10" fill="#666" text-anchor="middle" font-family="Source Sans 3">at rest</text>
+        <!-- Divider -->
+        <line x1="186" y1="10" x2="186" y2="80" stroke="#c49a1a" stroke-width="1.4" stroke-dasharray="4,3"/>
+        <text x="186" y="7"  font-size="10" fill="#c49a1a" text-anchor="middle" font-family="Source Sans 3">Impact</text>
+        <!-- AFTER -->
+        <text x="305" y="13" font-size="11" fill="#666" text-anchor="middle" font-family="Source Sans 3">AFTER</text>
+        <circle cx="254" cy="48" r="12" fill="#2a7a4e" stroke="#1a5c38" stroke-width="1.4"/>
+        <text x="254" y="52" font-size="9" fill="white" text-anchor="middle" font-family="Source Sans 3">46g</text>
+        <line x1="240" y1="48" x2="202" y2="48" stroke="#c03030" stroke-width="2" marker-end="url(#mback)"/>
+        <text x="208" y="42" font-size="10" fill="#c03030" font-family="Source Sans 3">3 ms⁻¹</text>
+        <rect x="280" y="36" width="28" height="28" rx="3" fill="#888" stroke="#555" stroke-width="1.3"/>
+        <text x="294" y="55" font-size="9" fill="white" text-anchor="middle" font-family="Source Sans 3">rock</text>
+        <line x1="310" y1="48" x2="348" y2="48" stroke="#1a5caa" stroke-width="2" marker-end="url(#mrock)"/>
+        <text x="314" y="42" font-size="10" fill="#1a5caa" font-family="Source Sans 3">4 ms⁻¹</text>
+      </svg>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(i)</span>
+        <span class="part-question">Define EACH of the following terms:&ensp;<strong>Impulse</strong>&ensp;and&ensp;<strong>Momentum</strong>.</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(ii)</span>
+        <span class="part-question">State ONE assumption that must be made about the golf ball and the rock, and hence determine the mass of the rock.</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ Q4 ════════════════════════════════════════════════════════ -->
+<div class="question-block">
+  <div class="question-header">
+    <span class="q-num">Question 4 — Three Coplanar Forces</span>
+    <span class="q-total">9 marks</span>
+  </div>
+  <div class="question-body">
+
+    <div class="scenario">
+      Three coplanar forces of magnitude 500 N, 750 N and 1200 N act at a point in the directions
+      shown in the following diagram. The magnitude of the resultant, R, of these three forces
+      acts at an angle \(\alpha°\) to the horizontal.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="300" height="255" viewBox="0 0 300 255" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ff1" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0,9 3.5,0 7" fill="#1a5c38"/>
+          </marker>
+          <marker id="ff2" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0,9 3.5,0 7" fill="#1a5caa"/>
+          </marker>
+          <marker id="ff3" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0,9 3.5,0 7" fill="#c49a1a"/>
+          </marker>
+        </defs>
+        <!-- origin -->
+        <circle cx="115" cy="138" r="4" fill="#444"/>
+        <!-- 750 N right -->
+        <line x1="115" y1="138" x2="244" y2="138" stroke="#1a5c38" stroke-width="2.5" marker-end="url(#ff1)"/>
+        <text x="250" y="143" font-size="13" fill="#1a5c38" font-family="Source Sans 3" font-weight="700">750 N</text>
+        <!-- 500 N down -->
+        <line x1="115" y1="138" x2="115" y2="232" stroke="#1a5caa" stroke-width="2.5" marker-end="url(#ff2)"/>
+        <text x="82"  y="245" font-size="13" fill="#1a5caa" font-family="Source Sans 3" font-weight="700">500 N</text>
+        <!-- 1200 N at 40° above horizontal: x2=115+115cos40≈203, y2=138−115sin40≈64 -->
+        <line x1="115" y1="138" x2="203" y2="64" stroke="#c49a1a" stroke-width="2.5" marker-end="url(#ff3)"/>
+        <text x="208" y="57"  font-size="13" fill="#c49a1a" font-family="Source Sans 3" font-weight="700">1200 N</text>
+        <!-- 40° arc -->
+        <path d="M 157,138 A 42,42 0 0,0 147,106" fill="none" stroke="#c49a1a" stroke-width="1.5"/>
+        <text x="159" y="128" font-size="12" fill="#c49a1a" font-family="EB Garamond,serif">40°</text>
+        <!-- right-angle marker -->
+        <rect x="115" y="138" width="10" height="10" fill="none" stroke="#888" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(a)</span>
+        <span class="part-question">Determine the value of R.</span>
+        <span class="part-marks">6 marks</span>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(b)</span>
+        <span class="part-question">Determine the location of the resultant, R. Your response MUST include the calculation of the value of \(\alpha\).</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ Q5 ════════════════════════════════════════════════════════ -->
+<div class="question-block">
+  <div class="question-header">
+    <span class="q-num">Question 5 — Two-Particle Collisions</span>
+    <span class="q-total">6 marks</span>
+  </div>
+  <div class="question-body">
+
+    <div class="scenario">
+      Two particles, P and Q, were initially moving towards each other in a straight line.
+      The mass of particle P is 2 kg, the mass of particle Q is \(x\) kg, and the speeds
+      before impact are 5 ms⁻¹ and 6 ms⁻¹ respectively.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="360" height="74" viewBox="0 0 360 74" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="pp" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#1a5c38"/>
+          </marker>
+          <marker id="qq" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#c49a1a"/>
+          </marker>
+        </defs>
+        <circle cx="68"  cy="37" r="19" fill="#2a7a4e" stroke="#1a5c38" stroke-width="1.5"/>
+        <text x="68"  y="34" font-size="10" fill="white" text-anchor="middle" font-family="Source Sans 3">P</text>
+        <text x="68"  y="47" font-size="10" fill="white" text-anchor="middle" font-family="Source Sans 3">2 kg</text>
+        <line x1="89"  y1="37" x2="130" y2="37" stroke="#1a5c38" stroke-width="2" marker-end="url(#pp)"/>
+        <text x="100" y="30" font-size="10.5" fill="#1a5c38" font-family="Source Sans 3">5 ms⁻¹</text>
+
+        <circle cx="292" cy="37" r="19" fill="#c49a1a" stroke="#a07800" stroke-width="1.5"/>
+        <text x="292" y="34" font-size="10" fill="white" text-anchor="middle" font-family="Source Sans 3">Q</text>
+        <text x="292" y="47" font-size="10" fill="white" text-anchor="middle" font-family="Source Sans 3">x kg</text>
+        <line x1="271" y1="37" x2="230" y2="37" stroke="#c49a1a" stroke-width="2" marker-end="url(#qq)"/>
+        <text x="234" y="30" font-size="10.5" fill="#c49a1a" font-family="Source Sans 3">6 ms⁻¹</text>
+
+        <circle cx="180" cy="37" r="4" fill="#e05050"/>
+      </svg>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(a)</span>
+        <span class="part-question">Both particles come to rest immediately after colliding with each other. Determine the value of \(x\), the mass of particle Q.</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(b)</span>
+        <span class="part-question">If after the collision both particles move with a speed of 3 ms⁻¹ to the left, determine the possible value of \(x\), the mass of particle Q.</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ Q6 ════════════════════════════════════════════════════════ -->
+<div class="question-block">
+  <div class="question-header">
+    <span class="q-num">Question 6 — Velocity–Time Graph: Falling Package</span>
+    <span class="q-total">3 marks</span>
+  </div>
+  <div class="question-body">
+
+    <div class="scenario">
+      The diagram below shows the approximate velocity–time graph of a package falling
+      vertically from rest. The package has a parachute attached that is set to open at a point
+      after it falls from the plane. The downward velocity of the package \(t\) seconds after falling
+      out of the plane is represented by \(v\) ms⁻¹.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="420" height="230" viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="taxs" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#333"/>
+          </marker>
+        </defs>
+        <!-- Axes -->
+        <line x1="50" y1="200" x2="405" y2="200" stroke="#333" stroke-width="2" marker-end="url(#taxs)"/>
+        <line x1="50" y1="200" x2="50"  y2="18"  stroke="#333" stroke-width="2" marker-end="url(#taxs)"/>
+        <!-- Labels -->
+        <text x="410" y="204" font-size="12" fill="#333" font-family="EB Garamond,serif" font-style="italic">t</text>
+        <text x="388" y="216" font-size="10" fill="#333" font-family="Source Sans 3">seconds</text>
+        <text x="14"  y="16"  font-size="12" fill="#333" font-family="EB Garamond,serif" font-style="italic">v</text>
+        <text x="2"   y="27"  font-size="9.5" fill="#333" font-family="Source Sans 3">ms⁻¹</text>
+
+        <!--
+          x-range 0→55 across 355px (x=50 to x=405): scale = 355/55 = 6.45 px/s
+          t=10 → 50 + 64.5  = 114.5 ≈ 115
+          t=25 → 50 + 161.4 = 211.4 ≈ 211
+          t=55 → 50 + 354.9 = 404.9 ≈ 405
+          y-range 0→55 across 180px (y=200 down to y=20): scale = 180/55 = 3.27 px/unit
+          v=50 → 200 − 163.6 = 36.4 ≈ 36
+          v=15 → 200 − 49.1  = 150.9 ≈ 151
+        -->
+
+        <!-- Dashed references -->
+        <line x1="50"  y1="36"  x2="175" y2="36"  stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="50"  y1="151" x2="405" y2="151" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="115" y1="200" x2="115" y2="36"  stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="211" y1="200" x2="211" y2="36"  stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="405" y1="200" x2="405" y2="151" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- Y ticks -->
+        <line x1="43" y1="36"  x2="57" y2="36"  stroke="#333" stroke-width="1.5"/>
+        <text x="22" y="40"  font-size="13" fill="#333" font-family="EB Garamond,serif">50</text>
+        <line x1="43" y1="151" x2="57" y2="151" stroke="#333" stroke-width="1.5"/>
+        <text x="22" y="155" font-size="13" fill="#333" font-family="EB Garamond,serif">15</text>
+
+        <!-- X ticks -->
+        <line x1="115" y1="193" x2="115" y2="207" stroke="#333" stroke-width="1.5"/>
+        <text x="107" y="220" font-size="13" fill="#333" font-family="EB Garamond,serif">10</text>
+        <line x1="211" y1="193" x2="211" y2="207" stroke="#333" stroke-width="1.5"/>
+        <text x="203" y="220" font-size="13" fill="#333" font-family="EB Garamond,serif">25</text>
+        <line x1="405" y1="193" x2="405" y2="207" stroke="#333" stroke-width="1.5"/>
+        <text x="397" y="220" font-size="13" fill="#333" font-family="EB Garamond,serif">55</text>
+
+        <!-- Graph: rise 0→50 (t=0→10), fall 50→15 (t=10→25), flat 15 (t=25→55) -->
+        <polyline points="50,200 115,36 211,151 405,151"
+          fill="none" stroke="#1a5c38" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="part">
+      <div class="part-header">
+        <span class="part-label">(i)</span>
+        <span class="part-question">Describe the motion of the package as shown in the diagram.</span>
+        <span class="part-marks">3 marks</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</div><!-- end .content -->
+
+<!-- ═══ FOOTER ═════════════════════════════════════════════════ -->
+<div class="exam-footer">
+  <div><span class="cfbc">CFBC</span> &nbsp;|&nbsp; Applied Mathematics Unit 2 – Module 3</div>
+  <div>End of Module Test · Paper 2</div>
+  <div>\(g = 10 \text{ ms}^{-2}\) &nbsp;|&nbsp; Total: 48 marks</div>
+</div>
+
+</body>
+</html>
